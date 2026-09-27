@@ -14,6 +14,7 @@ Este proyecto contiene la implementación desde cero de las estructuras de datos
 * **Documentación / Reporte:** LaTeX 
 
 ## Estructura del Proyecto
+```text
 ED_Listas_Pilas_Colas/
 ├── src/
 │   ├── List/                         # Implementaciones de Listas Enlazadas
@@ -24,23 +25,30 @@ ED_Listas_Pilas_Colas/
 │   │   ├── SinglyLinkedListTail.java # Lista simplemente enlazada (con Tail)
 │   │   ├── DoublyLinkedList.java     # Lista doblemente enlazada (sin Tail)
 │   │   └── DoublyLinkedListTail.java # Lista doblemente enlazada (con Tail)
+│   │
 │   ├── Stack/                        # Implementaciones de Pilas
 │   │   ├── MyStack.java              # Interfaz MyStack
 │   │   └── DynamicArrayStack.java    # Pila sobre arreglo dinámico redimensionable
+│   │
 │   ├── Queue/                        # Implementaciones de Colas
 │   │   ├── MyQueue.java              # Interfaz MyQueue
 │   │   └── DynamicArrayQueue.java    # Cola sobre arreglo circular dinámico
+│   │
 │   └── Main.java                     # Módulo de Benchmark y generación de datos CSV
+│
 ├── resultados.xls                    # Archivo con las métricas en microsegundos
+│
 ├── imagenes/                         # Gráficas de rendimiento empírico exportadas
 │   ├── DoublyLinkedList.png
-|   ├── DoublyLinkedListTail.png
-|   ├── SimplyLinkedList.png
-|   ├── SimplyLinkedListTail.png
-|   ├── DynamicArrayQueue.png
-|   ├── DynamicArrayStack.png
-├── Informe.tex                      # Documentación del informe en LaTeX
-└── README.md                         # Documentación general del repositorio
+│   ├── DoublyLinkedListTail.png
+│   ├── SimplyLinkedList.png
+│   ├── SimplyLinkedListTail.png
+│   ├── DynamicArrayQueue.png
+│   └── DynamicArrayStack.png
+│
+├── Informe.tex                        # Documentación del informe en LaTeX
+└── README.md                          # Documentación general del repositorio
+```
 
 ## Instalación y Ejecución
 
