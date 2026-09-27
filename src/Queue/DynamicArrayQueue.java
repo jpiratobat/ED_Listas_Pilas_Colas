@@ -7,7 +7,7 @@ public class DynamicArrayQueue<T> implements MyQueue<T> {
     private int rear;
     private int head;
 
-    public DynamicArrayQueue<T>(){
+    public DynamicArrayQueue(){
         array = (T[]) new Object[1];
         size = 0;
         this.rear = 0;

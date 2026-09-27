@@ -84,27 +84,37 @@ public class DoublyLinkedListTail<T> implements MyList<T> {
         if(head==null){
             throw new NullPointerException("Opción Invalida, no existen elementos ");
         }
-        DoubleNode<T> temp = head;
-        if(Objects.equals(temp.data, data)){
-            popFront();
-            return; 
-        }
-        else{
-            while(temp.next != null && !Objects.equals(temp.next.data, data)){
-                temp = temp.next;
-            }
-            if(temp.next == null){
-                throw new IllegalArgumentException("No se encontró ningún elemento con ese valor");
-            }
-            if(temp.next.next!=null){
-                temp.next.next.prev = temp;
+        int count = 0;
+        DoubleNode<T> previous = null;
+        DoubleNode<T> current = head;
+
+        for(int i = 0; i < size; i++){
+            if(Objects.equals(current.data, data)){
+                if(previous == null){
+                    head = current.next;
+                } else {
+                    previous.next = current.next;
+                    if(current.next == null){
+                        tail = previous;
+                    }
+                }
+        
+                if(current.next != null){
+                    current.next.prev = previous;
+                }
+                count++;
             } else{
-                popBack();
-                return;
+                previous = current;
             }
-            temp.next = temp.next.next;
+            current = current.next;
         }
-        size--;
+        if (head == null) {
+            tail = null;
+        }
+        size -= count;
+        if(count==0){
+            throw new IllegalArgumentException("No se encontró ningún elemento con ese valor");
+        }
     }
 
     public DoubleNode<T> find(T data){

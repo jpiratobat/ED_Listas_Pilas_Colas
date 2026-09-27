@@ -85,27 +85,35 @@ public class SinglyLinkedListTail<T> implements MyList<T>{
         if(head==null){
             throw new NullPointerException("Opción Invalida, no existen elementos ");
         }
+        int count = 0;
+        Node<T> prev = null;
         Node<T> temp = head;
-        if(Objects.equals(temp.data, data)){
-            popFront();
-            return;
-        }
-        else{
-            while(temp.next != null && !Objects.equals(temp.next.data, data)){
-                temp = temp.next;
-            }
-            if(temp.next == null){
-                throw new IllegalArgumentException("No se encontró ningún elemento con ese valor");
-            }
-            if (temp.next == tail) {
-                popBack();
-                return;
-            }
-            temp.next = temp.next.next;
-        }
-        size--;
-    }
 
+        for(int i = 0; i < size; i++){
+            if(Objects.equals(temp.data, data)){
+                if(prev == null){
+                    head = temp.next;
+                } else {
+                    prev.next = temp.next;
+                    if(temp.next == null){
+                        tail = prev;
+                    }
+                }
+                count++;
+            } else{
+                prev = temp;
+            }
+            temp = temp.next;
+        }
+        if (head == null) {
+            tail = null;
+        }
+        size -= count;
+        if(count==0){
+            throw new IllegalArgumentException("No se encontró ningún elemento con ese valor");
+        }
+    }
+    
     public Node<T> find(T data){
         if(head==null){
             throw new NullPointerException("Opción Invalida, no existen elementos ");
