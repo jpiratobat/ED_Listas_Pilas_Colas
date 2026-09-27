@@ -1,12 +1,14 @@
 package Queue;
 import java.util.Objects;
 
+// Cola circular por un arreglo de capacidad creciente
 public class DynamicArrayQueue<T> implements MyQueue<T> {
     private T[] array;
     private int size;
     private int rear;
     private int head;
 
+    // Crea una cola vacía con capacidad inicial de un elemento
     public DynamicArrayQueue(){
         array = (T[]) new Object[1];
         size = 0;
@@ -15,6 +17,7 @@ public class DynamicArrayQueue<T> implements MyQueue<T> {
     }
 
     @Override
+    // Inserta un elemento y duplica la capacidad cuando el arreglo se llena
     public void enqueue(T data) {
         if(array.length == size ){
             T[] temp = (T[]) new Object[size*2];
@@ -34,6 +37,7 @@ public class DynamicArrayQueue<T> implements MyQueue<T> {
     }
 
     @Override
+    // Extrae el elemento del frente y reajusta los índices circulares
     public T dequeue() {
         if(size == 0){
             throw new IndexOutOfBoundsException("No hay más elementos");
@@ -49,16 +53,19 @@ public class DynamicArrayQueue<T> implements MyQueue<T> {
     }
 
     @Override
+    // Comprueba si la cola está vacía
     public boolean isEmpty() {
         return size == 0;
     }
 
     @Override
+    // Devuelve el número de elementos de la cola
     public int getSize() {
         return size;
     }
 
     @Override
+    // Consulta el frente sin modificar la cola
     public T front() {
         if(size == 0){
             throw new NullPointerException(" No hay más elementos en la cola");
@@ -67,6 +74,7 @@ public class DynamicArrayQueue<T> implements MyQueue<T> {
     }
 
     @Override
+    //Elimina todas las apariciones del dato indicado
     public void delete(T data) {
         if(size==0){
             throw new IndexOutOfBoundsException("No hay elementos en este arreglo");

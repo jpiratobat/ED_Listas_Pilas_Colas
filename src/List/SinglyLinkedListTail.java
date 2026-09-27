@@ -1,22 +1,26 @@
 package List;
 import java.util.Objects;
 
+// Lista enlazada simple con referencias a cabeza y cola
 public class SinglyLinkedListTail<T> implements MyList<T>{
     private Node<T> head;
     private Node<T> tail;
     private int size = 0;
 
     @Override
+    // Devuelve el número de elementos de la lista
     public int getSize() {
         return size;
     }
 
     @Override
+    // Comprueba si la lista está vacía
     public boolean isEmpty() {
         return head == null;
     }
 
     @Override
+    // Inserta un nodo al principio y ajusta la cola si procede
     public void pushFront(T data){
         Node<T> newNode = new Node<>(data);
         newNode.next = head;
@@ -28,6 +32,7 @@ public class SinglyLinkedListTail<T> implements MyList<T>{
     }
 
     @Override
+    // Inserta un nodo directamente usando la referencia a la cola
     public void pushBack(T data){
         Node<T> newNode = new Node<>(data);
         if( head == null ){
@@ -42,6 +47,16 @@ public class SinglyLinkedListTail<T> implements MyList<T>{
     }
 
     @Override
+    // Devuelve el dato del primer nodo sin eliminarlo
+    public T topFront() {
+         if(head==null){
+            throw new NullPointerException("Opción Invalida, no existe más elementos ");
+        }
+        return head.data;
+    }
+
+    @Override
+    // Extrae la cabeza y actualiza la cola cuando queda vacía
     public T popFront(){
         if(head==null){
             throw new NullPointerException("Opción Invalida, no existe más elementos ");
@@ -56,6 +71,16 @@ public class SinglyLinkedListTail<T> implements MyList<T>{
     }
 
     @Override
+    // Devuelve el dato del último nodo usando la referencia tail
+    public T topBack() {
+        if(head==null){
+            throw new NullPointerException("Opción Invalida, no existe más elementos ");
+        }
+        return tail.data;
+    }
+
+    @Override
+    // Extrae la cola recorriendo hasta el penúltimo nodo
     public T popBack(){
         Node<T> temp = head;
         T data;
@@ -81,6 +106,7 @@ public class SinglyLinkedListTail<T> implements MyList<T>{
     }
 
     @Override
+    // Elimina todas las apariciones del dato y mantiene cabeza y cola
     public void erase(T data){
         if(head==null){
             throw new NullPointerException("Opción Invalida, no existen elementos ");
@@ -109,11 +135,9 @@ public class SinglyLinkedListTail<T> implements MyList<T>{
             tail = null;
         }
         size -= count;
-        if(count==0){
-            throw new IllegalArgumentException("No se encontró ningún elemento con ese valor");
-        }
     }
     
+    // Busca y devuelve el primer nodo cuyo dato coincide
     public Node<T> find(T data){
         if(head==null){
             throw new NullPointerException("Opción Invalida, no existen elementos ");
@@ -121,7 +145,7 @@ public class SinglyLinkedListTail<T> implements MyList<T>{
         Node<T> temp = head;
         while(!Objects.equals(temp.data, data)){
             if(temp.next== null){
-                throw new IllegalArgumentException("No se encontró ningún elemento con ese valor");
+                return null;
             }
             else{
                 temp = temp.next;
@@ -130,6 +154,7 @@ public class SinglyLinkedListTail<T> implements MyList<T>{
         return temp;
     }
 
+    // Inserta un nodo inmediatamente antes del nodo objetivo
     public void addBefore(Node<T> target, T data){
         if(target == null){
             throw new NullPointerException("El nodo objetivo no puede ser null");
@@ -153,6 +178,7 @@ public class SinglyLinkedListTail<T> implements MyList<T>{
         size++;
     }
 
+    // Inserta un nodo inmediatamente después del objetivo y ajusta la cola
     public void addAfter(Node<T> target, T data){
         if(target == null){
             throw new NullPointerException("El nodo objetivo no puede ser null");

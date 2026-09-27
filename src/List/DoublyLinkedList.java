@@ -1,21 +1,25 @@
 package List;
 import java.util.Objects;
 
+// Lista doblemente enlazada que mantiene únicamente la cabeza
 public class DoublyLinkedList<T> implements MyList<T>{
     private DoubleNode<T> head;
     private int size = 0;
 
     @Override 
+    // Devuelve el número de elementos de la lista
     public int getSize() {
         return size;
     }
 
     @Override
+    // Comprueba si la lista está vacía
     public boolean isEmpty() {
         return head == null;
     }
 
     @Override
+    // Inserta un nodo antes de la cabeza y actualiza su enlace anterior
     public void pushFront(T data){
         DoubleNode<T> newNode = new DoubleNode<>(data);
         if(head != null){
@@ -27,6 +31,7 @@ public class DoublyLinkedList<T> implements MyList<T>{
     }
 
     @Override
+    // Recorre la lista e inserta un nodo al final
     public void pushBack(T data){
         DoubleNode<T> newNode = new DoubleNode<>(data);
         if( head == null ){
@@ -44,6 +49,16 @@ public class DoublyLinkedList<T> implements MyList<T>{
     }
 
     @Override
+    // Devuelve el dato del primer nodo sin eliminarlo
+    public T topFront() {
+         if(head==null){
+            throw new NullPointerException("Opción Invalida, no existe más elementos ");
+        }
+        return head.data;
+    }
+
+    @Override
+    // Extrae la cabeza y elimina el enlace hacia atrás del nuevo inicio
     public T popFront(){
         if(head==null){
             throw new NullPointerException("Opción Invalida, no existe más elementos ");
@@ -56,8 +71,29 @@ public class DoublyLinkedList<T> implements MyList<T>{
         size--;
         return data;
     }
+    
+    @Override
+    // Recorre la lista y devuelve el dato del último nodo sin eliminarlo
+    public T topBack() {
+        DoubleNode<T> temp = head;
+        T data;
+        if(temp==null){
+            throw new NullPointerException("Opción Invalida, no existe más elementos ");
+        }
+        else if(temp.next==null){
+            data = head.data;
+        }
+        else{ 
+            while(temp.next.next!=null){
+                temp = temp.next;
+            }
+                data = temp.next.data;
+        }
+        return data;
+    }
 
     @Override
+    // Extrae la cola y desconecta sus enlaces anterior y siguiente
     public T popBack(){
         DoubleNode<T> temp = head;
         T data;
@@ -82,6 +118,7 @@ public class DoublyLinkedList<T> implements MyList<T>{
     }
 
     @Override
+    // Elimina todas las apariciones y arregla ambos sentidos de los enlaces
     public void erase(T data){
         if(head==null){
             throw new NullPointerException("Opción Invalida, no existen elementos ");
@@ -108,11 +145,9 @@ public class DoublyLinkedList<T> implements MyList<T>{
             current = current.next;
         }
         size -= count;
-        if(count==0){
-            throw new IllegalArgumentException("No se encontró ningún elemento con ese valor");
-        }
     }
     
+    // Busca y devuelve el primer nodo cuyo dato coincide
     public DoubleNode<T> find(T data){
         if(head==null){
             throw new NullPointerException("Opción Invalida, no existen elementos ");
@@ -120,7 +155,7 @@ public class DoublyLinkedList<T> implements MyList<T>{
         DoubleNode<T> temp = head;
         while(!Objects.equals(temp.data, data)){
             if(temp.next== null){
-                throw new IllegalArgumentException("No se encontró ningún elemento con ese valor");
+                return null;
             }
             else{
                 temp = temp.next;
@@ -129,6 +164,7 @@ public class DoublyLinkedList<T> implements MyList<T>{
         return temp;
     }
 
+    // Inserta un nodo antes del objetivo y repara sus enlaces dobles
     public void addBefore(DoubleNode<T> target, T data){
         if(target == null){
             throw new NullPointerException("El nodo objetivo no puede ser null");
@@ -155,6 +191,7 @@ public class DoublyLinkedList<T> implements MyList<T>{
         size++;
     }
 
+    // Inserta un nodo después del objetivo y repara sus enlaces dobles
     public void addAfter(DoubleNode<T> target, T data){
         if(target == null){
             throw new NullPointerException("El nodo objetivo no puede ser null");

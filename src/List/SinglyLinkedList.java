@@ -1,21 +1,25 @@
 package List;
 import java.util.Objects;
 
+// Lista enlazada simple que tiene únicamente la cabeza
 public class SinglyLinkedList<T> implements MyList<T>{
     private Node<T> head;
     private int size = 0;
     
     @Override 
+    // Devuelve el número de elementos de la lista
     public int getSize() {
         return size;
     }
 
     @Override
+    // Comprueba si la lista está vacía
     public boolean isEmpty() {
         return head == null;
     }
 
     @Override
+    // Inserta un nodo antes de la cabeza actual
     public void pushFront(T data){
         Node<T> newNode = new Node<>(data);
         newNode.next = head;
@@ -24,6 +28,7 @@ public class SinglyLinkedList<T> implements MyList<T>{
     }
 
     @Override
+    // Recorre la lista e inserta un nodo al final
     public void pushBack(T data){
         Node<T> newNode = new Node<>(data);
         if( head == null ){
@@ -40,6 +45,16 @@ public class SinglyLinkedList<T> implements MyList<T>{
     }
 
     @Override
+    // Devuelve el dato del primer nodo sin eliminarlo
+    public T topFront() {
+         if(head==null){
+            throw new NullPointerException("Opción Invalida, no existe más elementos ");
+        }
+        return head.data;
+    }
+
+    @Override
+    // Extrae la cabeza y avanza el inicio de la lista
     public T popFront(){
         if(head==null){
             throw new NullPointerException("Opción Invalida, no existe más elementos ");
@@ -51,6 +66,27 @@ public class SinglyLinkedList<T> implements MyList<T>{
     }
 
     @Override
+    // Recorre la lista y devuelve el dato del último nodo sin eliminarlo
+    public T topBack() {
+        Node<T> temp = head;
+        T data;
+        if(temp==null){
+            throw new NullPointerException("Opción Invalida, no existe más elementos ");
+        }
+        else if(temp.next==null){
+            data = head.data;
+        }
+        else{ 
+            while(temp.next.next!=null){
+                temp = temp.next;
+            }
+                data = temp.next.data;
+        }
+        return data;
+    }
+
+    @Override
+    // Recorre la lista, extrae la cola y desconecta el último nodo
     public T popBack(){
         Node<T> temp = head;
         T data;
@@ -74,6 +110,7 @@ public class SinglyLinkedList<T> implements MyList<T>{
     }
 
     @Override
+    // Elimina todas las apariciones del dato indicado
     public void erase(T data){
         if(head==null){
             throw new NullPointerException("Opción Invalida, no existen elementos ");
@@ -96,11 +133,9 @@ public class SinglyLinkedList<T> implements MyList<T>{
             temp = temp.next;
         }
         size -= count;
-        if(count==0){
-            throw new IllegalArgumentException("No se encontró ningún elemento con ese valor");
-        }
     }
 
+    // Busca y devuelve el primer nodo cuyo dato coincide
     public Node<T> find(T data){
         if(head==null){
             throw new NullPointerException("Opción Invalida, no existen elementos ");
@@ -108,7 +143,7 @@ public class SinglyLinkedList<T> implements MyList<T>{
         Node<T> temp = head;
         while(!Objects.equals(temp.data, data)){
             if(temp.next== null){
-                throw new IllegalArgumentException("No se encontró ningún elemento con ese valor");
+                return null;
             }
             else{
                 temp = temp.next;
@@ -117,6 +152,7 @@ public class SinglyLinkedList<T> implements MyList<T>{
         return temp;
     }
 
+    // Inserta un nodo inmediatamente antes del nodo objetivo
     public void addBefore(Node<T> target, T data){
         if(target == null){
             throw new NullPointerException("El nodo objetivo no puede ser null");
@@ -140,6 +176,7 @@ public class SinglyLinkedList<T> implements MyList<T>{
         size++;
     }
 
+    // Inserta un nodo inmediatamente después del nodo objetivo
     public void addAfter(Node<T> target, T data){
         if(target == null){
             throw new NullPointerException("El nodo objetivo no puede ser null");
