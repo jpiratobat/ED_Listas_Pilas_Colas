@@ -58,7 +58,6 @@ ED_Listas_Pilas_Colas/
 ├── Informe.tex                        # Documentación del informe en LaTeX
 └── README.md                          # Documentación general del repositorio
 ```
->>>>>>> 56cfe1182916576a989b06ec1d6ec83f07109c2f
 
 ## Instalación y Ejecución
 
