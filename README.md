@@ -40,7 +40,6 @@ ED_Listas_Pilas_Colas/
 │
 ├── imagenes/                         # Gráficas de rendimiento empírico exportadas
 │   ├── DoublyLinkedList.png
-<<<<<<< HEAD
 |   ├── DoublyLinkedListTail.png
 |   ├── SimplyLinkedList.png
 |   ├── SimplyLinkedListTail.png
@@ -48,15 +47,6 @@ ED_Listas_Pilas_Colas/
 |   ├── DynamicArrayStack.png
 ├── Informe.pdf                      # Documentación del informe en LaTeX
 └── README.md                         # Documentación general del repositorio
-=======
-│   ├── DoublyLinkedListTail.png
-│   ├── SimplyLinkedList.png
-│   ├── SimplyLinkedListTail.png
-│   ├── DynamicArrayQueue.png
-│   └── DynamicArrayStack.png
-│
-├── Informe.tex                        # Documentación del informe en LaTeX
-└── README.md                          # Documentación general del repositorio
 ```
 
 ## Instalación y Ejecución
