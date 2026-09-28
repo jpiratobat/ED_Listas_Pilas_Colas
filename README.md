@@ -39,7 +39,7 @@ ED_Listas_Pilas_Colas/
 |   ├── SimplyLinkedListTail.png
 |   ├── DynamicArrayQueue.png
 |   ├── DynamicArrayStack.png
-├── Informe.tex                      # Documentación del informe en LaTeX
+├── Informe.pdf                      # Documentación del informe en LaTeX
 └── README.md                         # Documentación general del repositorio
 
 ## Instalación y Ejecución
